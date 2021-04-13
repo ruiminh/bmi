@@ -14,12 +14,41 @@
 
     <jsp:body>
 
-        <div>
-            <h2>Our Cool Site</h2>
+       <div class="row">
+           <div class="col-sm-4"></div>
+           <div class="col-sm-4">
+            <h2>BMI Calculater</h2>
 
-            <div style="margin-top: 3em;margin-bottom: 3em;">
-                Main page for this 2. semester start project used at cphbusiness.dk
-            </div>
+
+
+            <form method="post" action="${pageContext.request.contextPath}/fc/bmiresult">
+                <div class="form-group">
+                   <label for="height">height in cm</label>
+                   <input id="height" name="height" type="text" class="form-control"/>
+                </div>
+                <div class="form-group">
+                   <label for="weight">weight in kg</label>
+                   <input id="weight" name="weight" type="text" class="form-control"/><br/>
+                </div>
+
+                <c:if test="${requestScope.error!=null}">
+                    <p style="color:orangered">
+                        ${requestScope.error}
+
+                    </p>
+
+                </c:if>
+
+                <button type="submit" class="btn btn-primary">Calculate BMI</button>
+
+            </form>
+           </div>
+           <div class="col-sm-4"></div>
+       </div>
+
+        <div>
+
+
 
             <c:if test="${sessionScope.role == 'employee' }">
                 <p style="font-size: larger">This is what you can do,
