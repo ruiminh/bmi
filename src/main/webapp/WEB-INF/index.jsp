@@ -30,6 +30,28 @@
                    <label for="weight">weight in kg</label>
                    <input id="weight" name="weight" type="text" class="form-control"/><br/>
                 </div>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label><br>
+
+
+
+                <label for="sport">Your favorite sports:</label>
+                <select name="sport" id="sport">
+                    <option value="1">jogging</option>
+                    <option value="2">football</option>
+                    <option value="3">handball</option>
+                    <option value="4">yoga</option>
+                </select><br/>
+
+                <input type="checkbox" id="hobby1" name="hobby" value="1">
+                <label for="hobby1"> I eat healthy food</label><br>
+                <input type="checkbox" id="hobby2" name="hobby" value="2">
+                <label for="hobby2"> I have a summer house</label><br>
+                <input type="checkbox" id="hobby3" name="hobby" value="3">
+                <label for="hobby3"> I have a pet</label><br><br>
+
 
                 <c:if test="${requestScope.error!=null}">
                     <p style="color:orangered">
@@ -42,6 +64,8 @@
                 <button type="submit" class="btn btn-primary">Calculate BMI</button>
 
             </form>
+
+
            </div>
            <div class="col-sm-4"></div>
        </div>

@@ -32,6 +32,13 @@
             <p>
             Your are ${requestScope.category}
             </p>
+            <p>Gender: ${requestScope.gender}</p>
+            <p>Favorite sport: ${requestScope.sport_id}</p>
+
+            <c:forEach var="hobbyItem" items="${requestScope.hobbies}">
+                hobby: ${hobbyItem}<br/>
+
+            </c:forEach>
         </div>
 
             <div class="col-sm-4"></div>
