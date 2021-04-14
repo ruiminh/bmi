@@ -39,10 +39,9 @@
 
                 <label for="sport">Your favorite sports:</label>
                 <select name="sport" id="sport">
-                    <option value="1">jogging</option>
-                    <option value="2">football</option>
-                    <option value="3">handball</option>
-                    <option value="4">yoga</option>
+                    <c:forEach var="sport" items="${applicationScope.sportList}">
+                        <option value="${sport.sport_id}">${sport.name}</option>
+                    </c:forEach>
                 </select><br/>
 
                 <input type="checkbox" id="hobby1" name="hobby" value="1">

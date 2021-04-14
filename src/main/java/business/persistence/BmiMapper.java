@@ -1,6 +1,7 @@
 package business.persistence;
 
 import business.entities.BmiEntry;
+import business.entities.Sport;
 import business.entities.User;
 import business.exceptions.UserException;
 
@@ -175,5 +176,113 @@ public class BmiMapper {
 
 
 
+    }
+
+    public int deleteSport(int sportId)throws UserException
+    {
+        try (Connection connection = database.connect())
+        {
+            String sql = "DELETE FROM sport WHERE sport_id=? "+
+                    "AND sport_id not in (SELECT sport_id FROM bmi_entry )";
+
+
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, sportId);
+                int rowAffected = ps.executeUpdate();
+                return rowAffected;
+
+            }
+            catch (SQLException ex)
+            {
+                throw new UserException(ex.getMessage());
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new UserException(ex.getMessage());
+        }
+    }
+    public List<Sport> getAllSports() throws UserException
+    {
+
+        List<Sport> sportsList = new ArrayList<>();
+
+        try (Connection connection = database.connect()) {
+
+            String sql = "SELECT * FROM sport";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+
+                    int id = rs.getInt("sport_id");
+                    String name = rs.getString("name");
+
+                    sportsList.add(new Sport(id,name));
+                    //todo:Excute mothed to add
+                    //Sport,hobby,user
+
+
+                }
+                return sportsList;
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException("Connection to database could not be established");
+        }
+
+
+    }
+    public Sport getSportsById(int sportId) throws UserException
+    {
+        try (Connection connection = database.connect()) {
+
+            String sql = "SELECT * FROM sport WHERE sport_id=?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1,sportId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+
+                    int newId = rs.getInt("sport_id");
+                    String name = rs.getString("name");
+
+                    return new Sport(newId,name);
+
+                }
+                throw new UserException("Could not find the sport for sport_id="+sportId);
+
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException("Connection to database could not be established");
+        }
+    }
+    public int updateSport(int sportId,String name) throws UserException
+    {
+        try (Connection connection = database.connect()) {
+
+            String sql = "UPDATE sport SET name = ? WHERE sport_id=? ";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setString(1,name);
+                ps.setInt(2,sportId);
+                int rowsUpdated = ps.executeUpdate();
+                return rowsUpdated;
+            }
+            catch (SQLException ex)
+            {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException("Connection to database could not be established");
+        }
     }
 }

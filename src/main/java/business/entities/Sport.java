@@ -2,9 +2,9 @@ package business.entities;
 
 public class Sport {
     private int sport_id;
-    private int name;
+    private String name;
 
-    public Sport(int sport_id, int name) {
+    public Sport(int sport_id, String name) {
         this.sport_id = sport_id;
         this.name = name;
     }
@@ -13,7 +13,7 @@ public class Sport {
         return sport_id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 }
