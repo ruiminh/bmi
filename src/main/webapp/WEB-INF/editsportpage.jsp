@@ -9,32 +9,35 @@
     <jsp:attribute name="footer">
     </jsp:attribute>
     <jsp:body>
-        <h1>Hello ${sessionScope.email} </h1>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <h1>Hello ${sessionScope.email} </h1>
 
-        Please edit and update sports below
+                <h3 class="mb-3">Please edit and update sports below</h3>
 
-        <form action="${pageContext.request.contextPath}/fc/managesports" method="post">
+                <form action="${pageContext.request.contextPath}/fc/managesports" method="post">
 
-            <input type ="hidden" name="sports_id" value="${requestScope.sportItem.sport_id}"/>
+                    <input type ="hidden" name="sports_id" value="${requestScope.sportItem.sport_id}"/>
 
-            <table>
-                <thead><th>name</th><th></th></thead>
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="form-group">
 
-                    <tr>
-                        <td><input type="text" name="name" value="${requestScope.sportItem.name}"/></td>
-                        <td><button type="submit" name="update" >edit</button></td>
+                                <label class="form-check-label" for="name">Name</label>
+                                <td><input id="name" class="form-control" type="text" name="name" value="${requestScope.sportItem.name}"/></td>
+                                <td><button class="btn btn-primary btn-sm mt-2" type="submit" name="update" >edit</button></td>
+                        </div>
+                    </div>
 
-                    </tr>
+                    <c:if test="${not empty requestScope.error}">
+                        <br/>
+                        <p style="color:palevioletred;font-size: large">${requestScope.error}</p>
+                    </c:if>
 
+                </form>
+            </div>
+            <div class="col-sm-4">
 
-            </table>
-
-            <c:if test="${not empty requestScope.error}">
-                <br/>
-                <p style="color:palevioletred;font-size: large">${requestScope.error}</p>
-            </c:if>
-
-        </form>
 
     </jsp:body>
 </t:genericpage>

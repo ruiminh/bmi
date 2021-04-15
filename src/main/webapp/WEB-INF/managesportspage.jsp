@@ -9,18 +9,22 @@
     <jsp:attribute name="footer">
     </jsp:attribute>
     <jsp:body>
+        <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+
         <h1>Hello ${sessionScope.email} </h1>
 
-        This is the sports list.
+        <h3>This is the sports list</h3>
         <form action="${pageContext.request.contextPath}/fc/managesports" method="post">
-        <table>
+        <table class="table">
             <thead><th>ID</th><th>name</th><th></th><th></th></thead>
             <c:forEach var="sportItem" items="${applicationScope.sportList}">
                 <tr>
                     <td>${sportItem.sport_id}</td>
                     <td>${sportItem.name}</td>
-                    <td><button type="submit" name="delete" value="${sportItem.sport_id}">delete</button></td>
-                    <td><button type="submit" name="edit" value="${sportItem.sport_id}">edit</button></td>
+                    <td><button class="btn btn-danger btn-sm" type="submit" name="delete" value="${sportItem.sport_id}">delete</button></td>
+                    <td><button class="btn btn-primary btn-sm" type="submit" name="edit" value="${sportItem.sport_id}">edit</button></td>
 
                 </tr>
 
@@ -35,6 +39,8 @@
             </c:if>
 
         </form>
+        </div>
 
+        <div class="col-sm-4">
     </jsp:body>
 </t:genericpage>

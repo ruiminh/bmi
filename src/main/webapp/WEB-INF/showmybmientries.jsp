@@ -11,7 +11,7 @@
     <jsp:body>
         <h1>Hello ${sessionScope.email} </h1>
         Here you can find all your BMI in history.
-        <table>
+        <table class="table">
             <thead><th>ID</th><th>BMI</th><th>height</th><th>weight</th><th>gender</th></thead>
             <c:forEach var="bmiEntry" items="${requestScope.bmiEntryList}">
                 <tr>

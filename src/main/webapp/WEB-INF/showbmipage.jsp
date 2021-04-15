@@ -11,7 +11,7 @@
     <jsp:body>
         <h1>Hello ${sessionScope.email} </h1>
         This is our all BMI entries in database so far.
-        <table>
+        <table class="table table-striped">
             <thead><th>ID</th><th>BMI</th><th>height</th><th>weight</th><th>gender</th></thead>
             <c:forEach var="bmiEntry" items="${requestScope.bmiEntryList}">
                 <tr>
